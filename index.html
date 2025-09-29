@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saytaş İnşaat — Ultra Lüks Landing Page</title>
+  <meta name="description" content="Saytaş İnşaat - Ultra lüks konut ve ticari projeler. Modern tasarım, premium yaşam.">
+
+  <!-- Google Fontlar -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050507; /* koyu arka plan */
+      --gold:#c6a15a; /* lüks altın */
+      --muted:#a7a7a7;
+      --glass: rgba(255,255,255,0.06);
+      --card: rgba(255,255,255,0.03);
+      --accent: rgba(198,161,90,0.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#030305 0%, #07070a 100%);
+      color:#fff;-webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;line-height:1.45
+    }
+
+    /* NAVBAR */
+    .nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;z-index:60}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#8f6f3a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#111;font-family:'Playfair Display',serif}
+    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:18px;letter-spacing:0.6px}
+    .nav .links{display:flex;gap:24px;align-items:center}
+    .nav a{color:white;text-decoration:none;font-weight:600 }
+    .cta{background:linear-gradient(90deg,var(--gold),#b98f45);padding:10px 16px;border-radius:8px;color:#0b0b0b;font-weight:700}
+
+    /* hamburger */
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;background:var(--glass);align-items:center;justify-content:center;cursor:pointer}
+    .hamburger span{display:block;width:20px;height:2px;background:#fff;margin:3px 0;border-radius:2px}
+
+    /* HERO with video */
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center}
+    .bg-video{position:absolute;inset:0;overflow:hidden;z-index:0}
+    .bg-video video{width:100%;height:100%;object-fit:cover;filter:grayscale(0.06) contrast(1.05) brightness(0.56)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,3,3,0.24),rgba(3,3,3,0.6));z-index:1}
+
+    .hero-inner{position:relative;z-index:10;display:flex;gap:48px;align-items:center;justify-content:space-between;width:100%;padding:120px 8vw}
+    .left{max-width:720px}
+    .eyebrow{font-weight:600;color:var(--gold);letter-spacing:1px}
+    .headline{font-family:'Playfair Display',serif;font-size:48px;margin:12px 0 14px;line-height:1.02}
+    .sub{color:var(--muted);font-size:18px;margin-bottom:22px}
+    .hero-actions{display:flex;gap:16px}
+    .btn{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+    .btn-primary{background:linear-gradient(90deg,var(--gold),#b98f45);color:#090909}
+
+    /* Feature cards */
+    .features{display:flex;gap:18px;margin-top:30px}
+    .feature{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px 14px;border-radius:12px;display:flex;flex-direction:column;gap:6px;width:180px}
+    .feature h4{margin:0;font-size:14px}
+    .feature p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Right visual card */
+    .right-card{min-width:420px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));border-radius:18px;padding:18px;backdrop-filter: blur(6px);box-shadow:0 10px 30px rgba(2,2,2,0.7)}
+    .project-preview{height:320px;border-radius:12px;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center}
+    .project-preview img{width:100%;height:100%;object-fit:cover}
+    .meta{display:flex;justify-content:space-between;margin-top:12px;align-items:center}
+
+    /* sections */
+    section{padding:84px 8vw}
+    .section-title{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+    .section-title h2{font-family:'Playfair Display',serif;margin:0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+    .card{background:var(--card);padding:18px;border-radius:14px}
+
+    /* portfolio */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:10px}
+
+    /* contact */
+    .contact-form{max-width:720px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:22px;border-radius:12px}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .field input,.field textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
+    .submit{display:inline-block;padding:12px 20px;border-radius:10px}
+
+    footer{padding:28px 8vw;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero-inner{flex-direction:column;align-items:flex-start;padding:100px 6vw}
+      .right-card{width:100%}
+      .nav .links{display:none}
+      .hamburger{display:flex}
+    }
+    @media (max-width:640px){
+      .headline{font-size:34px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .features{flex-direction:column}
+    }
+
+    /* Video Bölümü */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.video-section video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hakkımızda Bölümü */
+.about-section {
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+}
+
+.about-text {
+  flex: 1 1 500px;
+}
+
+.about-image {
+  flex: 1 1 500px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Hizmetlerimiz Bölümü */
+.services-section {
+  padding: 80px 5%;
+  background: black;
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background:black;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+
+
+    /* small animations */
+    .reveal{opacity:0;transform:translateY(12px);transition:all .7s cubic-bezier(.2,.9,.25,1)}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <h1>Saytaş İnşaat</h1>
+        <div style="font-size:12px;color:var(--muted)">Premium - Proje & Yapım</div>
+      </div>
+    </div>
+
+    <div class="links">
+       <a href="index.html">Anasayfa</a>
+      <a href="Hizmetlerimiz.html">Hizmetler</a>
+      <a href="hakkımızda.html">Hakkımızda</a>
+      <a href="#iletisim" class="cta">Teklif Al</a>
+    </div>
+
+    <div class="hamburger" id="hamb">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="bg-video">
+      <!-- video.mp4 dosyanızı buraya koyun. autoplay, loop, muted. -->
+      <video autoplay muted loop playsinline>
+        <source src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/saytaş video.mp4" type="video/mp4">
+        <!-- yedek görsel -->
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="overlay"></div>
+
+    <div class="hero-inner">
+      <div class="left">
+        <div class="eyebrow reveal">Mimari • İnşaat • Yatırım</div>
+        <h2 class="headline reveal">Saytaş İnşaat</h2>
+        <h2 class="headline reveal">Her Projede Güven, Her Adımda Kalite</h2>
+        <p class="sub reveal">Özenle tasarlanmış projeler, kaliteli işçilik ve yatırım değeri yüksek yaşam alanları. Her proje bir imza, her detay bir standarttır.</p>
+
+        <div class="hero-actions reveal">
+          <a href="#iletisim" class="btn btn-primary">Ücretsiz Keşif Talebi</a>
+          <a href="#projeler" class="btn btn-ghost">Projelerimizi Gör</a>
+        </div>
+
+        <div class="features reveal" style="margin-top:20px">
+          <div class="feature">
+            <h4>Özel Tasarım</h4>
+            <p>Modern ve zamansız mimari dil.</p>
+          </div>
+          <div class="feature">
+            <h4>Premium Malzeme</h4>
+            <p>En üst kalite bitiş ve donanım.</p>
+          </div>
+          <div class="feature">
+            <h4>Anahtar Teslim</h4>
+            <p>Planlama - İnşaat - Teslimat sürecinde tam destek.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-card reveal">
+        <div class="project-preview">
+          <!-- örnek önizleme, isterseniz <img> yerine video küçük klip koyun -->
+          <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/örnek resim.jpg" alt="Proje preview">
+        </div>
+        <div class="meta">
+          <div>
+            <div style="font-size:13px;color:var(--muted)">Güncel Proje</div>
+            <div style="font-weight:700">BUTTERFLY WORLD</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:700">120M² - 450M²</div>
+            <div style="font-size:13px;color:var(--muted)">İstanbul</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="projeler">
+      <div class="section-title">
+        <h2>Seçkin Projelerimiz</h2>
+        <div style="flex:1"></div>
+        <div style="color:var(--muted)">Lüks konut ve ticari yapılar</div>
+      </div>
+      <div class="gallery reveal">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/1.jpg" alt="Proje 1">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/2.jpg" alt="Proje 2">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/3.jpg" alt="Proje 3">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/7.jpg" alt="Proje 4">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/5.jpg" alt="Proje 5">
+        <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/6.jpg" alt="Proje 6">
+      </div>
+    </section>
+
+
+
+<!-- Hakkımızda Bölümü -->
+<section id="hakkimizda" class="about-section">
+  <div class="about-content">
+    <div class="about-text">
+      <h2>Hakkımızda</h2>
+      <p>
+      Saytaş İnşaat, güven, kalite ve yenilik ilkeleriyle modern ve sağlam yapılar inşa eder.
+      </p>
+      <p>Güçlü ekibimizle, yaşam alanlarına değer katmayı ve sektörde güvenilir bir marka olmayı hedefliyoruz.</p>
+
+    </div>
+    <div class="about-image">
+      <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/8.jpg" alt="Saytaş İnşaat Hakkımızda" />
+    </div>
+  </div>
+</section>
+
+    <!-- Hizmetlerimiz Bölümü -->
+<section id="hizmetler" class="services-section">
+  <h2>Hizmetlerimiz</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/9.jpg" alt="Konut Projeleri" />
+      <h3>Konut Projeleri</h3>
+      <p>Modern yaşam alanlarıyla estetik ve konforu bir araya getiriyoruz.</p>
+    </div>
+    <div class="service-card">
+      <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/7.jpg" alt="Ticari Yapılar" />
+      <h3>Ticari Yapılar</h3>
+      <p>Prestijli iş merkezleri ve ticari yapılarla şehirlere değer katıyoruz.</p>
+    </div>
+    <div class="service-card">
+      <img src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/Resimler/7.jpg" alt="Mimarlık & Tasarım" />
+      <h3>Mimarlık & Tasarım</h3>
+      <p>Yenilikçi ve sürdürülebilir çözümlerle modern mimariler tasarlıyoruz.</p>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="iletisim">
+      <div class="section-title">
+        <h2>İletişim & Teklif Talebi</h2>
+      </div>
+
+
+
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div style="flex:1;min-width:320px">
+          <div class="contact-form reveal">
+            <form id="contactForm">
+              <div class="field">
+                <label for="isim">Adınız Soyadınız</label>
+                <input id="isim" name="isim" type="text" required>
+              </div>
+              <div class="field">
+                <label for="tel">Telefon</label>
+                <input id="tel" name="tel" type="tel" required>
+              </div>
+              <div class="field">
+                <label for="email">E-posta</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div class="field">
+                <label for="mesaj">Kısa Proje Özeti</label>
+                <textarea id="mesaj" name="mesaj" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="submit btn-primary submit">Teklif Al</button>
+            </form>
+          </div>
+        </div>
+
+        <div style="width:360px;min-width:260px">
+          <div style="background:var(--card);padding:18px;border-radius:12px">
+            <h4 style="margin:6px 0">Ofis</h4>
+            <p style="color:var(--muted);margin:6px 0">İstanbul, Türkiye</p>
+            <p style="margin:6px 0">Telefon: +90 530 070 38 07 /p>
+            <p style="margin:6px 0">E-posta: info@saytasinsaat.com</p>
+          </div>
+
+          <div style="margin-top:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px;border-radius:12px">
+            <h4 style="margin:6px 0">Sosyal</h4>
+            <p style="color:var(--muted);margin:6px 0">Instagram / LinkedIn / YouTube</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      © <span id="yil"></span> Saytaş İnşaat — Tüm hakları saklıdır.
+    </div>
+    <div style="color:var(--muted)">KVKK ve Gizlilik Politikası</div>
+  </footer>
+
+  <script>
+    // Dinamik yıl
+    document.getElementById('yil').textContent = new Date().getFullYear();
+
+    // Hamburger menu: basit toggler (mobilde linkleri gösterme)
+    const hamb = document.getElementById('hamb');
+    hamb.addEventListener('click', ()=>{
+      const links = document.querySelector('.nav .links');
+      if(links.style.display === 'flex') links.style.display = 'none';
+      else links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '80px';
+      links.style.right = '20px';
+      links.style.background = 'rgba(0,0,0,0.5)';
+      links.style.padding = '12px';
+      links.style.borderRadius = '10px';
+    });
+
+    // Form submit (örnek, gerçek backend yok — burada form verisini konsola basıyoruz)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+      const obj = Object.fromEntries(data.entries());
+      console.log('Teklif talebi gönderildi:', obj);
+      alert('Talebiniz alındı. En kısa sürede size dönüş yapacağız.');
+      form.reset();
+    });
+
+    // Basit reveal scroll animasyonu
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); });
+    },{threshold:0.12});
+    reveals.forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>

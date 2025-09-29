@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saytaş İnşaat — Ultra Lüks Landing Page</title>
+  <meta name="description" content="Saytaş İnşaat - Ultra lüks konut ve ticari projeler. Modern tasarım, premium yaşam.">
+
+  <!-- Google Fontlar -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+
+   /* Menü */
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background: rgba(0,0,0,0.6); position: sticky; top: 0; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-box { width: 40px; height: 40px; background: #c5a13e; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 18px; color: #000; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text strong { font-size: 1.2rem; color: #fff; }
+    .logo-text span { font-size: 0.8rem; color: #ccc; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: #c5a13e; }
+    .cta-btn { background: #c5a13e; color: #000; padding: 10px 18px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: background 0.3s ease; }
+    .cta-btn:hover { background: #e6c55f; }
+
+    /* hamburger */
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;background:var(--glass);align-items:center;justify-content:center;cursor:pointer}
+    .hamburger span{display:block;width:20px;height:2px;background:#fff;margin:3px 0;border-radius:2px}
+
+  body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #000; color: #fff; }
+    .overlay { background: rgba(0, 0, 0, 0.9); min-height: 100vh; width: 100%; padding: 40px 20px; box-sizing: border-box; }
+    h1 { text-align: center; font-size: 3rem; margin: 40px 0 20px; color: #f5c542; text-transform: uppercase; letter-spacing: 2px; }
+    .about-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 20px; }
+    .about-text { font-size: 1.1rem; line-height: 1.7; color: #ddd; }
+    .about-text strong { color: #f5c542; }
+    .about-video video { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .values { margin-top: 60px; text-align: center; padding: 20px; }
+    .values h2 { font-size: 2.2rem; margin-bottom: 30px; color: #f5c542; }
+    .value-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .value-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; transition: transform .4s ease, box-shadow .4s ease; }
+    .value-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); }
+    .value-card h3 { color: #fff; margin-bottom: 10px; }
+    .value-card p { color: #ccc; line-height: 1.5; font-size: 0.95rem; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all .8s ease-in-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    
+    /* İletişim Kutusu */
+    .contact {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f5c542;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+
+    .contact button {
+      background: #f5c542;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact button:hover {
+      background: #d4a62a;
+    }
+
+    /* Animasyon */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-in-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* small animations */
+    .reveal{opacity:0;transform:translateY(12px);transition:all .7s cubic-bezier(.2,.9,.25,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    
+    /* contact */
+    .contact-form{max-width:720px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:22px;border-radius:12px}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .field input,.field textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
+    .submit{display:inline-block;padding:12px 20px;border-radius:10px}
+
+    footer{padding:28px 8vw;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+  
+    
+</style>
+
+
+<body>
+<!-- Menü -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-box">S</div>
+      <div class="logo-text">
+        <strong>Saytaş İnşaat</strong>
+        <span>Premium - Proje & Yapım</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Anasayfa</a>
+      <a href="hakkımızda.html">Hakkımızda</a>
+      <a href="Hizmetlerimiz.html">Hizmetler</a>
+      <a href="#" class="cta-btn">Teklif Al</a>
+    </div>
+  </nav>
+<div class="overlay">
+
+    <h1>Hakkımızda</h1>
+
+    <div class="about-container fade-in">
+      <div class="about-text">
+        <p><strong>Saytaş İnşaat</strong>, inşaat sektöründe güven, kalite ve yenilik ilkeleriyle faaliyet göstermektedir.
+Kuruluş amacımız; modern, estetik ve sağlam yapılar inşa ederek yaşam alanlarına değer katmaktır.
+</p>
+        <p>Müşteri memnuniyetini her zaman ön planda tutarak; projelerimizde kaliteli malzeme, profesyonel işçilik ve sürdürülebilir çözümler sunuyoruz.
+Her geçen gün büyüyen tecrübemiz ve güçlü ekibimizle, sektörde öncü ve güvenilir bir marka olmayı amaçlıyoruz.</p>
+
+<p>değerlerimizden ödün vermeden geleceği inşa etmeye devam ediyoruz.</p>
+
+<p>“Sağlam temeller, güçlü yarınlar.”</p>
+      </div>
+      <div class="about-video">
+        <video autoplay muted loop controls>
+          <source src="/Users/Burak/Desktop/Burak Güzel/Örnek Web Siteleri/Saytaş inşaat/saytaş video.mp4" type="video/mp4">
+          Tarayıcınız video etiketini desteklemiyor.
+        </video>
+      </div>
+    </div>
+
+    <div class="values fade-in">
+      <h2>Değerlerimiz</h2>
+      <div class="value-cards">
+        <div class="value-card">
+          <h3>✨ Mükemmeliyet</h3>
+          <p>Her projede en üst kalite standartlarını hedefleriz.</p>
+        </div>
+        <div class="value-card">
+          <h3>🤝 Kalite</h3>
+          <p>Müşterilerimizle karşılıklı güven ve şeffaflık üzerine çalışırız.</p>
+        </div>
+        <div class="value-card">
+          <h3>🌍 Yenilikçilik</h3>
+          <p>Çevre dostu çözümler ile geleceğe yatırım yaparız.</p>
+        </div>
+        <div class="value-card">
+          <h3>🏆 Müşteri memnuniyeti</h3>
+          <p>Modern teknolojileri projelerimize entegre ederiz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fade-in animasyonu
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+  </script>
+
+
+  <footer>
+     <div>
+      © <span id="yil"></span> Saytaş İnşaat — Tüm hakları BEG DİJİTAL tarafından saklıdır.
+    </div>
+    <div style="color:var(--muted)">KVKK ve Gizlilik Politikası</div>
+  </footer>
+
+
+</body>
+</html>
